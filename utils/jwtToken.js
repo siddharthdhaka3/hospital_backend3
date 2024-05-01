@@ -10,6 +10,8 @@ export const generateToken = (user, message, statusCode, res) => {
         Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
       ),
       httpOnly: true,
+      sameSite: 'None', // Set SameSite attribute to None
+      secure: true // Required for SameSite=None
     })
     .json({
       success: true,
@@ -18,4 +20,3 @@ export const generateToken = (user, message, statusCode, res) => {
       token,
     });
 };
-
